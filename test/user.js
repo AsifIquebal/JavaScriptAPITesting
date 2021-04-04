@@ -44,7 +44,7 @@ describe('CHAI Assertion', () => {
     it.only('GET: user/id', () => {
         return request.get(`/users/123?access-token=${TOKEN}`).then((res) => {
             console.log(res.status);
-            expect(res.status).is.equal(200);
+            expect(res.status, "Expecting Status Code to be 200").to.equal(201);
         })
     });
 
