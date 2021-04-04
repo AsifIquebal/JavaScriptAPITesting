@@ -41,11 +41,26 @@ describe('CHAI Assertion', () => {
         })
     });
 
-    it.only('GET: user/id', () => {
+    it('GET: user/id', () => {
         return request.get(`/users/123?access-token=${TOKEN}`).then((res) => {
             console.log(res.status);
             expect(res.status, "Expecting Status Code to be 200").to.equal(201);
         })
     });
+
+    it.only('Foreach', () => {
+        const url = `/users?access-token=${TOKEN}&page=1&gender=Female&status=Active`;
+        return request.get(url).then((res) => {
+            expect(res.body.data).to.not.be.empty;
+            res.body.data.forEach((data) => {
+                //console.log(data);
+                expect(data.gender).to.eq('Female');
+                expect(data.status).to.eq('Active');
+            });
+        });
+
+    });
+
+
 
 });
