@@ -15,7 +15,7 @@ describe('CHAI Assertion', () => {
         })
     });
 
-    it('PASSING: chai assertion: callback for it to get completed', (completed) => {
+    it.only('PASSING: chai assertion: callback for it to get completed', (completed) => {
         request.get(`users?access-token=${TOKEN}`).end((err, res) => {
             //console.log(err);
             //console.log(res.body);
