@@ -1,8 +1,9 @@
+require('dotenv').config();
+import request from '../config/goRest';
 import { expect } from 'chai';
-import supertest from 'supertest';
 import { createUser, deleteUser } from '../helper/userHelper';
-const request = supertest('https://gorest.co.in/public-api/');
-const TOKEN = "bde7127d66039c143f8c7b9e6082959baf796380e1e75e0d51d351b3b3638ddc";
+
+const TOKEN = process.env.USER_TOKEN;
 
 describe.only('Create Post, Get Post, Delete Post', () => {
     let postId, userId;
@@ -40,6 +41,7 @@ describe.only('Create Post, Get Post, Delete Post', () => {
             throw new Error(`postId is invalid - ${postId}`);
         }
     });
+
     it('Delete Post/:id', async () => {
         if (postId) {
             let res = await request
@@ -51,14 +53,9 @@ describe.only('Create Post, Get Post, Delete Post', () => {
             throw new Error(`postId is invalid - ${postId}`);
         }
     });
-    // it('delete user', async () => {
-    //     console.log("Deleting user by userId: " + userId);
-    //     let res = await request
-    //         .delete('users/' + userId)
-    //         .set('Authorization', `Bearer ${TOKEN}`);
-    //     console.log("User Deletion Status Code: " + res);
-    // });
-    after(() => {
-        deleteUser(userId);
+
+    after(async () => {
+        await deleteUser(userId);
     });
+
 });

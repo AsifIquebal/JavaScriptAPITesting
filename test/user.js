@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import supertest from 'supertest';
 const request = supertest('https://gorest.co.in/public-api/')
 
-const TOKEN = 'bde7127d66039c143f8c7b9e6082959baf796380e1e75e0d51d351b3b3638ddc';
+const TOKEN = process.env.USER_TOKEN;
 
 describe('CHAI Assertion', () => {
 

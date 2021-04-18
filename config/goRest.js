@@ -1,6 +1,4 @@
-import properties from './properties'
-import { expect } from 'chai';
 import supertest from 'supertest';
+import properties from '../config/properties';
 const request = supertest(properties.baseUrl);
-
 export default request;
