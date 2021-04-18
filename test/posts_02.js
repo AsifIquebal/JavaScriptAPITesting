@@ -5,7 +5,7 @@ import { createUser, deleteUser } from '../helper/userHelper';
 
 const TOKEN = process.env.USER_TOKEN;
 
-describe.only('Create Post, Get Post, Delete Post', () => {
+describe('Create Post, Get Post, Delete Post', () => {
 
     let postId, userId;
 

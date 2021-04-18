@@ -19,8 +19,7 @@ describe.only('Create Post, Get Post, Delete Post', () => {
     });
 
     it('Create a Post by the User', async () => {
-        testStep("Hello World");
-        console.log("User created with ID: " + userId);
+        testStep("User created with ID: " + userId);
         const usersPostsdata = {
             user_id: userId,
             title: "test title asus",
@@ -30,10 +29,10 @@ describe.only('Create Post, Get Post, Delete Post', () => {
             .post('posts')
             .set('Authorization', `Bearer ${TOKEN}`)
             .send(usersPostsdata);
-        //console.log(res.body);
+        //testStep(res.body);
         expect(res.body.data).to.deep.include(usersPostsdata);
         postId = res.body.data.id;
-        console.log(`User [${userId}] created Post Id: ${postId}`);
+        testStep(`User [${userId}] created Post Id: ${postId}`);
     });
 
     // dependent on previous test
@@ -43,7 +42,7 @@ describe.only('Create Post, Get Post, Delete Post', () => {
                 .get(`posts/${postId}`)
                 .set('Authorization', `Bearer ${TOKEN}`)
                 .expect(200);
-            console.log(res.body);
+            testStep(JSON.stringify(res.body));
         } else {
             throw new Error(`postId is invalid - ${postId}`);
         }
@@ -55,7 +54,7 @@ describe.only('Create Post, Get Post, Delete Post', () => {
                 .delete(`posts/${postId}`)
                 .set('Authorization', `Bearer ${TOKEN}`)
                 .expect(200);
-            console.log(res.body);
+            testStep(JSON.stringify(res.body));
         } else {
             throw new Error(`postId is invalid - ${postId}`);
         }
