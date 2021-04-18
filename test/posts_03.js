@@ -1,4 +1,5 @@
 require('dotenv').config();
+require("mocha-allure-reporter");
 import request from '../config/goRest';
 import { expect } from 'chai';
 import { createUser, deleteUser } from '../helper/userHelper';
@@ -7,6 +8,10 @@ const TOKEN = process.env.USER_TOKEN;
 
 describe.only('Create Post, Get Post, Delete Post', () => {
 
+    const testStep = allure.createStep("{0}", () => {
+
+    });
+
     let postId, userId;
 
     before(async () => {
@@ -14,6 +19,7 @@ describe.only('Create Post, Get Post, Delete Post', () => {
     });
 
     it('Create a Post by the User', async () => {
+        testStep("Hello World");
         console.log("User created with ID: " + userId);
         const usersPostsdata = {
             user_id: userId,
