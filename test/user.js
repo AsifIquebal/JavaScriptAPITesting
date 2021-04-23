@@ -75,7 +75,7 @@ describe('User apis', () => {
             })
     });
 
-    it.only('POST: create user', async () => {
+    it('POST: create user', async () => {
         const payLoad = {
             email: `test${Math.floor(Math.random() * 8888)}@mail.com`,
             name: 'Test Name',
